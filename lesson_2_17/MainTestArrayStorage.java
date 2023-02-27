@@ -1,6 +1,9 @@
 /**
  * Test for your ArrayStorage implementation
  */
+
+package com.basejava.lesson_2_17;
+
 public class MainTestArrayStorage {
     static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
 
@@ -21,6 +24,7 @@ public class MainTestArrayStorage {
 
         System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
 
+        ARRAY_STORAGE.update(r1);
         printAll();
         ARRAY_STORAGE.delete(r1.uuid);
         printAll();

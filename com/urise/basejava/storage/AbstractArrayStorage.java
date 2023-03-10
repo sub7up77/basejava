@@ -18,11 +18,21 @@ public abstract class AbstractArrayStorage implements Storage {
         size = 0;
     }
 
-    public abstract void save(Resume r);
+    public void save(Resume r) {
+        int index = getIndex(r.getUuid());
+        if (size >= storage.length) {
+            System.out.println("The storage is full");
+        } else if (index >= 0) {
+            System.out.println("Resume " + r.getUuid() + " already exist");
+        } else {
+            insertElement(r);
+            size++;
+        }
+    }
 
     public final void update(Resume r) {
         int index = getIndex(r.getUuid());
-        if (index != -1) {
+        if (index >= 0) {
             storage[index] = r;
         } else {
             System.out.println("Resume " + r.getUuid() + " not found");
@@ -31,14 +41,23 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public final Resume get(String uuid) {
         int index = getIndex(uuid);
-        if (index == -1) {
+        if (index < 0) {
             System.out.println("Resume " + uuid + " not exist");
             return null;
         }
         return storage[index];
     }
 
-    public abstract void delete(String uuid);
+    public void delete(String uuid) {
+        int index = getIndex(uuid);
+        if (index < 0) {
+            System.out.println("Resume " + uuid + " not found");
+        } else {
+            fillDeletedElement(index);
+            storage[size - 1] = null;
+            size--;
+        }
+    }
 
     public final Resume[] getAll() {
         return Arrays.copyOf(storage, size);
@@ -49,4 +68,8 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
     protected abstract int getIndex(String uuid);
+
+    protected abstract void insertElement(Resume r);
+
+    protected abstract void fillDeletedElement(int index);
 }

@@ -1,3 +1,5 @@
+package com.urise.webapp.storage;
+
 /**
  * Initial resume class
  */

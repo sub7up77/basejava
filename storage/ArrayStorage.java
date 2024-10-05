@@ -1,4 +1,6 @@
-package com.urise.webapp.storage;
+package ru.javawebinar.basejava.storage;
+
+import ru.javawebinar.basejava.model.Resume;
 
 import java.util.Arrays;
 
@@ -7,7 +9,8 @@ import java.util.Arrays;
  */
 public class ArrayStorage {
 
-    private final Resume[] storage = new Resume[10000];
+    private static final int STORAGE_LIMIT = 10000;
+    private static final Resume[] storage = new Resume[STORAGE_LIMIT];
     private int size;
 
     protected int size() {
@@ -67,7 +70,9 @@ public class ArrayStorage {
 
     private int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (uuid.equals(storage[i].uuid)) return i;
+            if (storage[i].uuid.equals(uuid)) {
+                return i;
+            }
         }
         return -1;
     }

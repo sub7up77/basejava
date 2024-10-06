@@ -4,7 +4,7 @@ import ru.javawebinar.basejava.model.Resume;
 
 public interface Storage {
 
-    int size();
+    int getSize();
 
     Resume get(String uuid);
 

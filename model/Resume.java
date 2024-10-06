@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Resume implements Comparable<Resume> {
 
     // Unique identifier
-    String uuid;
+    private String uuid;
 
     public String getUuid() {
         return uuid;
